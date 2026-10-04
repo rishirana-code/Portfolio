@@ -1,0 +1,835 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400&display=swap');
+:root {
+   /* Colors */
+  --bg: #0a0a0a;             /* page background */
+  --card: #161616;           /* card background */
+  --card-hover: #1e1e1e;     /* card on hover */
+  --border: #262626;         /* card borders */
+  --text: #f0f0f0;           /* main text */
+  --text-muted: #a0a0a0;     /* secondary text */
+  --text-dim: #666666;       /* tiny labels */
+  --green: #00ff40f0;          /* matrix green accent */
+  --green-glow: rgba(0, 255, 65, 0.15);
+
+  /* Fonts */
+  --font-pixel: 'Press Start 2P', monospace;
+  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+
+  /* Sizes */
+  --radius-lg: 28px;
+  --radius-md: 16px;
+  --radius-sm: 8px;
+}
+
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+  scroll-padding-top: 50px;  
+  
+}
+
+ul { list-style: none; }
+a  { text-decoration: none; color: inherit; }
+img { max-width: 100%; display: block; }
+
+body{
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.6;
+  min-height: 100vh;
+  padding: 0 5%;
+}
+
+h1,h2,h3 {
+  font-family: var(--font-pixel);
+  line-height: 1.3;
+  color: var(--text);
+}
+
+h1 { font-size: 28px; }
+h2 { font-size: 20px; margin-bottom: 24px; }
+h3 { font-size: 14px; }
+
+section {
+  padding: 30px 0;
+}
+
+/*Floating Header*/
+header {
+  position: sticky;
+  top: 6px;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+}
+
+nav{
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  justify-content: center;
+  background-color: rgba(22, 22, 22, 0.8);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 5px 8px;
+  backdrop-filter: blur(12px);
+  transform:scale(1.5)
+}
+
+.logo {
+   width: 28px;
+   height: 28px;
+   border-radius: 50%;
+   background: var(--green);
+   color: var(--bg);
+   font-family: var(--font-pixel);
+   font-size: 14px;
+   text-align: center;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+nav ul {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+nav ul li a {
+  color: var(--text-muted);
+  font-size: 12px;
+  transition: color 0.2s ease;
+}
+
+nav ul li a:hover {
+  color: var(--green);
+  font-family: var(--font-pixel); 
+  padding: 4px 8px;
+}
+
+#hero {
+    position: relative;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    overflow: hidden;
+}
+
+#hero h1 {
+    text-align: center;
+    font-size: clamp(32px, 5vw, 42px);
+    line-height: 1.5;
+    color: var(--text);
+    margin-bottom: 28px;
+}
+
+.terminal-prompt {
+  color: var(--green);
+  font-family: var(--font-pixel);
+  font-size: 14px;
+  margin-bottom: 24px;
+  opacity: 0.9;
+}
+
+.tagline {
+  color: var(--text-muted);
+  font-size: 16px;
+  margin-bottom: 36px;
+  max-width: 500px;
+}
+
+/* "Get in touch" button */
+.cta-btn {
+  display: inline-block;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 14px 28px;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  align-self: center;
+  transition: all 0.2s ease;
+}
+
+.cta-btn:hover {
+  background: var(--green);
+  color: var(--bg);
+  border-color: var(--green);
+}
+
+.currently {
+  color: var(--green);
+  opacity: 0.55;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  margin-top: 44px;
+}
+
+
+/* ============================================
+   ABOUT SECTION
+   ============================================ */
+.about-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 40px;
+  align-items: center;
+}
+
+.about-text p {
+  color: var(--text-muted);
+  margin-bottom: 14px;
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+.about-text p:last-child {
+  color: var(--text);
+  margin-bottom: 0;
+}
+
+.about-photo {
+  width: 200px;
+  height: 200px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--border);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.about-photo:hover {
+  transform: scale(1.02);
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ============================================
+   PROJECTS SECTION
+   ============================================ */
+
+   .project-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    grid-auto-rows: 220px;
+   }
+
+   /* Bento sizing — the whole trick is grid-column / grid-row span */
+.project-large  { grid-column: span 1; grid-row: span 2; }   /* tall left */
+.project-medium { grid-column: span 1; grid-row: span 1; }   /* top right */
+.project-small  { grid-column: span 1; grid-row: span 1; }   /* mid right */
+.project-wide   { grid-column: span 2; grid-row: span 1; }   /* full-width bottom */
+
+
+
+ 
+ .project-card {
+    position: relative;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+     transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+     color: var(--text);
+ }
+
+ /* HOVER EFFECTS */
+ .project-card:hover {
+    transform: translateY(-4px);
+    background: var(--card-hover);
+    border-color: var(--green);
+ }
+
+ .project-info {
+  z-index: 2;
+  position: relative;
+  max-width: 65%;
+ }
+
+ .project-tag {
+  color: var(--text-dim);
+  font-size: 10px;
+  letter-spacing: 1.5px;
+ }
+
+ .project-card h3 {
+  font-size: 14px;
+  margin: 14px 0 10px;
+  color: var(--text);
+ }
+
+ .project-card p {
+  color: var(--text-muted);
+  font-size: 12px;
+  line-height: 1.6;
+ }
+
+ /* Project preview image */
+ .project-preview {
+   position: absolute;
+   bottom : -20px;
+   right: -20px;
+   width: 55%;
+   height: 60%;
+    background-size: cover;
+    background-position: center;
+    border-radius: var(--radius-md);
+    opacity: 0.25;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.25s ease;
+ }
+
+  .project-card:hover .project-preview {
+      opacity: 1;
+      transform: translateY(0);
+  }
+
+   .project-arrow {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--green-glow);
+  color: var(--green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  z-index: 3;
+  transition: background 0.25s ease;
+}
+
+.project-card:hover .project-arrow {
+    background : var(--green);
+    color: var(--bg);
+}
+
+/* ============================================
+   WALL OF WINS — bento grid of tiles
+   ============================================ */
+.wins-bento {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 130px;
+  gap: 16px;
+}
+.leetcode-dis{
+  font : var(--font-mono);
+ }
+/* Tile sizes */
+.tile-leetcode { grid-column: span 2; grid-row: span 2; }   /* BIG */
+.tile-codechef { grid-column: span 2; grid-row: span 1; }
+.tile-cgpa     { grid-column: span 1; grid-row: span 1; }
+.tile-streak   { grid-column: span 1; grid-row: span 1; }
+.tile-photo    { grid-column: span 2; grid-row: span 1; }   /* photo tiles */
+.tile-certs    { grid-column: span 2; grid-row: span 1; }
+
+.tile {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+/* <a> tiles get a hover treatment; static <div> tiles don't move */
+a.tile:hover {
+  transform: translateY(-3px);
+  border-color: var(--green);
+}
+
+.tile-label {
+  color: var(--green);
+  font-size: 10px;
+  letter-spacing: 1.5px;
+}
+
+.tile-value {
+  color: var(--text);
+  font-family: var(--font-pixel);
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+.tile-sub {
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+/* Photo tiles — image fills, caption sits on top */
+.tile-photo {
+  padding: 0;
+}
+
+.tile-photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tile-photo .tile-caption {
+  position: relative;
+  z-index: 2;
+  margin-top: auto;
+  padding: 14px 16px;
+  background: linear-gradient(to top, rgba(10,10,10,0.9), transparent);
+}
+
+/* ============================================
+   SECTION SUBTITLES
+   ============================================ */
+.section-sub {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin-bottom: 32px;
+}
+
+/* ============================================
+   SKETCHES SLIDESHOW
+   ============================================ */
+.slideshow-container {
+  position: relative;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.slideshow {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--card);
+  border: 1px solid var(--border);
+}
+
+.slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide.active {
+  opacity: 1;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Arrow buttons */
+.slide-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--border);
+  background: rgba(22, 22, 22, 0.8);
+  color: var(--green);
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, border-color 0.2s ease;
+  z-index: 10;
+}
+
+.slide-arrow:hover {
+  background: var(--green);
+  color: var(--bg);
+  border-color: var(--green);
+}
+
+.slide-arrow.left {
+  left: 16px;
+}
+
+.slide-arrow.right {
+  right: 16px;
+}
+
+/* Dot indicators */
+.slide-dots {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--border);
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.dot.active {
+  background: var(--green);
+}
+
+.dot:hover {
+  background: var(--green);
+}
+
+
+/* ============================================
+   RESUME SECTION
+   ============================================ */
+#resume {
+  text-align: center;
+}
+
+.download-btn {
+  display: inline-block;
+  background: var(--green);
+  color: var(--bg);
+  padding: 14px 32px;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  border: 1px solid var(--green);
+  cursor: pointer;
+}
+
+.download-btn:hover {
+  background: transparent;
+  color: var(--green);
+}
+
+
+/* ============================================
+   CONTACT SECTION
+   ============================================ */
+#contact {
+  text-align: center;
+}
+
+.contact-links {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.contact-links a {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--card);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--green);
+  transition: all 0.2s ease;
+}
+
+.contact-links a:hover {
+  background: var(--green);
+  color: var(--bg);
+  border-color: var(--green);
+  transform: translateY(-3px);
+}
+
+.contact-links svg {
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
+}
+
+
+/* ============================================
+   FOOTER
+   ============================================ */
+footer {
+  background: var(--card);
+  border-top: 1px solid var(--border);
+  text-align: center;
+  padding: 40px 20px;
+  margin-top: 80px;
+}
+
+footer p {
+  color: var(--text-muted);
+  font-size: 12px;
+  line-height: 2;
+}
+
+.konami-hint {
+  color: var(--text-dim);
+  opacity: 0.5;
+  font-size: 11px;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN — tablets & phones
+   ============================================ */
+
+/* ===== TABLETS (768px and down) ===== */
+@media (max-width: 768px) {
+  
+  /* Overall */
+  body {
+    padding: 0 4%;
+    font-size: 14px;
+  }
+
+  section {
+    padding: 60px 0;
+  }
+
+  /* Headings smaller */
+  h1 { font-size: 28px; }
+  h2 { font-size: 18px; }
+  h3 { font-size: 12px; }
+
+  /* Navbar adapts */
+  header {
+    top: 10px;
+    padding-top: 10px;
+  }
+
+  nav {
+    padding: 8px 16px;
+    gap: 16px;
+  }
+
+  .logo {
+    width: 30px;
+    height: 30px;
+    font-size: 9px;
+  }
+
+  nav ul {
+    gap: 14px;
+  }
+
+  nav ul li a {
+    font-size: 12px;
+  }
+
+  /* Hero */
+  #hero {
+    min-height: 60vh;
+    padding: 40px 20px;
+  }
+
+  .terminal-prompt {
+    font-size: 12px;
+    margin-bottom: 16px;
+  }
+
+  #hero h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+
+  .tagline {
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+
+  .currently {
+    font-size: 11px;
+    margin-top: 28px;
+  }
+
+  /* About — stack to 1 column */
+  .about-card {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 24px;
+  }
+
+  .about-photo {
+    width: 160px;
+    height: 160px;
+    margin: 0 auto;
+  }
+
+  .about-text p {
+    font-size: 13px;
+  }
+
+  /* Projects — 2 columns → 1 column, smaller */
+  .project-grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 180px;
+    gap: 16px;
+  }
+
+  .project-large  { grid-column: span 1; grid-row: span 1; }
+  .project-medium { grid-column: span 1; grid-row: span 1; }
+  .project-small  { grid-column: span 1; grid-row: span 1; }
+  .project-wide   { grid-column: span 1; grid-row: span 1; }
+
+  .project-card {
+    padding: 20px;
+  }
+
+  .project-card h3 {
+    font-size: 14px;
+    margin: 10px 0 6px;
+  }
+
+  .project-card p {
+    font-size: 12px;
+  }
+
+  .project-preview {
+    display: none;  /* hide preview on tablet */
+  }
+
+  .project-arrow {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+  }
+
+  /* Wall of Wins — 2 columns instead of 4 */
+  .wins-bento {
+     grid-template-columns: 1fr;
+    grid-auto-rows: 100px;
+    gap: 10px;
+  }
+
+  .tile-leetcode { grid-column: span 1; grid-row: span 1; }
+  .tile-codechef { grid-column: span 1; grid-row: span 1; }
+  .tile-cgpa     { grid-column: span 1; grid-row: span 1; }
+  .tile-streak   { grid-column: span 1; grid-row: span 1; }
+  .tile-photo    { grid-column: span 1; grid-row: span 1; }
+  .tile-certs    { grid-column: span 1; grid-row: span 1; }
+
+  .tile {
+    padding: 12px;
+    border-radius: var(--radius-sm);
+  }
+
+  .tile-value {
+    font-size: 14px;
+  }
+
+  .tile-label {
+    font-size: 8px;
+  }
+
+  /* Sketches */
+  .slideshow {
+    aspect-ratio: 16 / 12;
+  }
+
+  .slide-arrow {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
+
+  .slide-arrow.left {
+    left: 6px;
+  }
+
+  .slide-arrow.right {
+    right: 6px;
+  }
+
+  .slide-dots {
+    bottom: 12px;
+  }
+
+  .dot {
+    width: 7px;
+    height: 7px;
+  }
+
+  /* Resume */
+  .download-btn {
+    padding: 12px 28px;
+    font-size: 12px;
+  }
+
+  /* Contact icons stack better */
+  .contact-links {
+    gap: 12px;
+  }
+
+  .contact-links a {
+    width: 40px;
+    height: 40px;
+  }
+
+  .contact-links svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  /* Footer */
+  footer {
+    padding: 20px 12px;
+  }
+
+  footer p {
+    font-size: 10px;
+    line-height: 1.8;
+  }
+
+  .konami-hint {
+    font-size: 9px;
+  }
+}
+
+
+
